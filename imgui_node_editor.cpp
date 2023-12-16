@@ -3333,7 +3333,7 @@ ed::EditorAction::AcceptResult ed::NavigateAction::Accept(const Control& control
 
     auto& io = ImGui::GetIO();
 
-    if (Editor->CanAcceptUserInput() && ImGui::IsKeyPressed(GetKeyIndexForF()) && Editor->AreShortcutsEnabled())
+    if (Editor->CanAcceptUserInput() && ImGui::IsKeyPressed((ImGuiKey)GetKeyIndexForF()) && Editor->AreShortcutsEnabled())
     {
         const auto zoomMode = io.KeyShift ? NavigateAction::ZoomMode::WithMargin : NavigateAction::ZoomMode::None;
 
@@ -4366,15 +4366,15 @@ ed::EditorAction::AcceptResult ed::ShortcutAction::Accept(const Control& control
     Action candidateAction = None;
 
     auto& io = ImGui::GetIO();
-    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_X)))
+    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed((ImGuiKey)ImGui::GetKeyIndex(ImGuiKey_X)))
         candidateAction = Cut;
-    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_C)))
+    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed((ImGuiKey)ImGui::GetKeyIndex(ImGuiKey_C)))
         candidateAction = Copy;
-    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_V)))
+    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed((ImGuiKey)ImGui::GetKeyIndex(ImGuiKey_V)))
         candidateAction = Paste;
-    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed(GetKeyIndexForD()))
+    if (io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed((ImGuiKey)GetKeyIndexForD()))
         candidateAction = Duplicate;
-    if (!io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Space)))
+    if (!io.KeyCtrl && !io.KeyShift && !io.KeyAlt && ImGui::IsKeyPressed((ImGuiKey)ImGui::GetKeyIndex(ImGuiKey_Space)))
         candidateAction = CreateNode;
 
     if (candidateAction != None)
@@ -4928,7 +4928,7 @@ ed::EditorAction::AcceptResult ed::DeleteItemsAction::Accept(const Control& cont
         return False;
 
     auto& io = ImGui::GetIO();
-    if (Editor->CanAcceptUserInput() && ImGui::IsKeyPressed(ImGui::GetKeyIndex(ImGuiKey_Delete)) && Editor->AreShortcutsEnabled())
+    if (Editor->CanAcceptUserInput() && ImGui::IsKeyPressed((ImGuiKey)ImGui::GetKeyIndex(ImGuiKey_Delete)) && Editor->AreShortcutsEnabled())
     {
         auto& selection = Editor->GetSelectedObjects();
         if (!selection.empty())
